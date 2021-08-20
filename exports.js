@@ -700,6 +700,7 @@ module.exports = {
         'instanceDefaultServiceAccount' : require(__dirname + '/plugins/google/compute/instanceDefaultServiceAccount.js'),
         'shieldedVmEnabled'             : require(__dirname + '/plugins/google/compute/shieldedVmEnabled.js'),
         'instanceDeletionProtection'    : require(__dirname + '/plugins/google/compute/instanceDeletionProtection.js'),
+        'autoscaleMinCpuUtilization'    : require(__dirname + '/plugins/google/compute/autoscaleMinCpuUtilization.js'),
 
         'keyRotation'                   : require(__dirname + '/plugins/google/cryptographickeys/keyRotation.js'),
         'keyProtectionLevel'            : require(__dirname + '/plugins/google/cryptographickeys/keyProtectionLevel.js'),
