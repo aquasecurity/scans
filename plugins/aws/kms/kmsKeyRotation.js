@@ -59,9 +59,8 @@ module.exports = {
                 return rcb();                
             }
 
-            async.each(listKeys.data, function(kmsKey, kcb){
-                var describeKey = helpers.addSource(cache, source,
-                    ['kms', 'describeKey', region, kmsKey.KeyId]);
+            listKeys.data.forEach(kmsKey => {
+                if (!kmsKey.KeyId) return;
 
                 var getKeyPolicy = helpers.addSource(cache, source,
                     ['kms', 'getKeyPolicy', region, kmsKey.KeyId]);
@@ -70,7 +69,7 @@ module.exports = {
                     helpers.addResult(results, 3,
                         'Unable to get key policy: ' + helpers.addError(getKeyPolicy),
                         region, kmsKey.KeyArn);
-                    return kcb();
+                    return;
                 }
 
                 // Auq-CSPM keys for Remediations should be skipped. 
@@ -79,56 +78,52 @@ module.exports = {
                     config.kms_key_policy_whitelisted_policy_ids.length &&
                     config.kms_key_policy_whitelisted_policy_ids.indexOf(getKeyPolicy.data.Id)>-1) {
                     helpers.addResult(results, 0, 'The key ' + kmsKey.KeyArn + ' is whitelisted.', region, kmsKey.KeyArn);
-                    return kcb();
+                    return;
                 }
 
-                var getKeyRotationStatus = helpers.addSource(cache, source,
-                    ['kms', 'getKeyRotationStatus', region, kmsKey.KeyId]);
-
-                if (!describeKey || describeKey.err || !describeKey.data) {
+                var describeKey = helpers.addSource(cache, source,
+                    ['kms', 'describeKey', region, kmsKey.KeyId]);
+                
+                if (!describeKey || describeKey.err || !describeKey.data || !describeKey.data.KeyMetadata) {
                     helpers.addResult(results, 3,
                         'Unable to describe key: ' + helpers.addError(describeKey),
                         region, kmsKey.KeyArn);
-                    return kcb();
+                    return;
                 }
 
                 var describeKeyData = describeKey.data;
 
                 // AWS-generated keys for CodeCommit, ACM, etc. should be skipped.
-                // The only way to distinguish these keys is the default description used by AWS.
-                // Also skip keys that are being deleted
-                if (describeKeyData.KeyMetadata &&
-                    (describeKeyData.KeyMetadata.Description && describeKeyData.KeyMetadata.Description.indexOf('Default master key that protects my') === 0) ||
-                    (describeKeyData.KeyMetadata.KeyState && describeKeyData.KeyMetadata.KeyState == 'PendingDeletion')) {
-                    return kcb();
-                }
+                // Also skip keys that are being deleted 
+                const currentEncryptionLevel = helpers.getEncryptionLevel(describeKeyData.KeyMetadata, helpers.ENCRYPTION_LEVELS);
+                if (currentEncryptionLevel <= 2 ||
+                    (describeKeyData.KeyMetadata.KeyState &&
+                    describeKeyData.KeyMetadata.KeyState.toUpperCase() === 'PENDINGDELETION'))  return;
 
                 // Skip keys that are imported into KMS
                 if (describeKeyData.KeyMetadata &&
                     describeKeyData.KeyMetadata.Origin &&
                     describeKeyData.KeyMetadata.Origin !== 'AWS_KMS') {
-                    return kcb();
+                    return;
                 }
 
-                var keyRotationStatusData = getKeyRotationStatus.data;
-
-                if (!getKeyRotationStatus || getKeyRotationStatus.err || !getKeyRotationStatus.data) {
+                var getKeyRotationStatus = helpers.addSource(cache, source,
+                    ['kms', 'getKeyRotationStatus', region, kmsKey.KeyId]);
+                
+                if (!getKeyRotationStatus || getKeyRotationStatus.err || !getKeyRotationStatus.data){
                     helpers.addResult(results, 3,
                         'Unable to get key rotation status: ' + helpers.addError(getKeyRotationStatus),
                         region, kmsKey.KeyArn);
-                    return kcb();
+                    return;
                 }
 
-                if (keyRotationStatusData.KeyRotationEnabled) {
-                    helpers.addResult(results, 0, 'Key rotation is enabled', region, kmsKey.KeyArn);
-                } else {
-                    helpers.addResult(results, 2, 'Key rotation is not enabled', region, kmsKey.KeyArn);
-                }
+                var enabled = getKeyRotationStatus.data.KeyRotationEnabled;
+                var status = enabled ? 0 : 2;
 
-                kcb();
-            }, function(){
-                rcb();
+                helpers.addResult(results, status, `Key rotation is ${enabled ? '' : 'not'} enabled`, region, kmsKey.KeyArn);
             });
+
+            rcb();
         }, function(){
             callback(null, results, source);
         });
