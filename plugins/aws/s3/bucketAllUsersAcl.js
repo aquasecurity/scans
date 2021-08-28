@@ -10,12 +10,24 @@ module.exports = {
     more_info: 'S3 buckets can be configured to allow anyone, regardless of whether they are an AWS user or not, to write objects to a bucket or delete objects. This option should not be configured unless there is a strong business requirement.',
     recommended_action: 'Disable global all users policies on all S3 buckets and ensure both the bucket ACL is configured with least privileges.',
     link: 'http://docs.aws.amazon.com/AmazonS3/latest/UG/EditingBucketPermissions.html',
-    apis: ['S3:listBuckets', 'S3:getBucketAcl'],
+    apis: ['S3:listBuckets', 'S3:getBucketAcl', 'S3:getBucketLocation'],
     compliance: {
         pci: 'PCI requires that cardholder data can only be accessed by those with ' +
              'a legitimate business need. If PCI-restricted data is stored in S3, ' +
              'those buckets should not enable global user access.'
     },
+    remediation_description: 'Bucket ACL will be modified to be private to bucket owner.',
+    remediation_min_version: '202108172230',
+    apis_remediate: ['S3:listBuckets', 'S3:getBucketLocation'],
+    actions: {
+        remediate: ['S3:putBucketAcl'],
+        rollback: ['S3:putBucketAcl']
+    },
+    permissions: {
+        remediate: ['s3:PutBucketAcl'],
+        rollback: ['s3:PutBucketAcl']
+    },
+    realtime_triggers: [],
 
     run: function(cache, settings, callback) {
         var results = [];
@@ -99,5 +111,58 @@ module.exports = {
         }
         
         callback(null, results, source);
+    },
+
+    remediate: function(config, cache, settings, resource, callback) {
+        var putCall = this.actions.remediate;
+        var pluginName = 'bucketAllUsersAcl';
+        var bucketNameArr = resource.split(':');
+        var bucketName = bucketNameArr[bucketNameArr.length - 1];
+
+        // find the location of the bucket needing to be remediated
+        var bucketLocations = cache['s3']['getBucketLocation'];
+        var bucketLocation;
+
+        for (var key in bucketLocations) {
+            if (bucketLocations[key][bucketName]) {
+                bucketLocation = key;
+                break;
+            }
+        }
+
+        // add the location of the bucket to the config
+        config.region = bucketLocation;
+
+        // create the params necessary for the remediation
+        var params = {
+            Bucket: bucketName,
+            ACL: 'private'
+        };
+
+        var remediation_file = settings.remediation_file;
+
+        remediation_file['pre_remediate']['actions'][pluginName][resource] = {
+            'ACL': 'Public',
+            'Bucket': bucketName
+        };
+
+        // passes the config, put call, and params to the remediate helper function
+        helpers.remediatePlugin(config, putCall[0], params, function(err) {
+            if (err) {
+                remediation_file['remediate']['actions'][pluginName]['error'] = err;
+                return callback(err, null);
+            }
+
+            let action = params;
+            action.action = putCall;
+
+            remediation_file['post_remediate']['actions'][pluginName][resource] = action;
+            remediation_file['remediate']['actions'][pluginName][resource] = {
+                'ACL': 'Private',
+                'Bucket': bucketName
+            };
+            settings.remediation_file = remediation_file;
+            return callback(null, action);
+        });
     }
 };
