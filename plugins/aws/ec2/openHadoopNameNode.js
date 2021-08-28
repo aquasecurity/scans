@@ -8,7 +8,15 @@ module.exports = {
     more_info: 'While some ports such as HTTP and HTTPS are required to be open to the public to function properly, more sensitive services such as Hadoop/HDFS should be restricted to known IP addresses.',
     link: 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html',
     recommended_action: 'Restrict TCP port 8020 to known IP addresses for Hadoop/HDFS',
-    apis: ['EC2:describeSecurityGroups'],
+    apis: ['EC2:describeSecurityGroups', 'EC2:describeNetworkInterfaces', 'Lambda:listFunctions'],
+    settings: {
+        ec2_skip_unused_groups: {
+            name: 'EC2 Skip Unused Groups',
+            description: 'Skip checking ports for unused security groups',
+            regex: '^(true|false)$',
+            default: 'false',
+        }
+    },
     remediation_description: 'The impacted security group rule will be deleted if no input is provided. Otherwise, any input will replace the open CIDR rule.',
     remediation_min_version: '202006020730',
     apis_remediate: ['EC2:describeSecurityGroups'],
@@ -37,6 +45,12 @@ module.exports = {
     realtime_triggers: ['ec2:AuthorizeSecurityGroupIngress'],
 
     run: function(cache, settings, callback) {
+        var config = {
+            ec2_skip_unused_groups: settings.ec2_skip_unused_groups || this.settings.ec2_skip_unused_groups.default,
+        };
+
+        config.ec2_skip_unused_groups = (config.ec2_skip_unused_groups == 'true');
+        
         var results = [];
         var source = {};
         var regions = helpers.regions(settings);
@@ -64,7 +78,7 @@ module.exports = {
                 return rcb();
             }
 
-            helpers.findOpenPorts(describeSecurityGroups.data, ports, service, region, results);
+            helpers.findOpenPorts(describeSecurityGroups.data, ports, service, region, results, cache, config, rcb);
 
             rcb();
         }, function(){

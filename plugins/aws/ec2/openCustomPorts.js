@@ -8,7 +8,7 @@ module.exports = {
     more_info: 'Security groups should restrict access to ports from known networks.',
     link: 'https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html',
     recommended_action: 'Modify the security group to ensure the defined custom ports are not exposed publicly',
-    apis: ['EC2:describeSecurityGroups'],
+    apis: ['EC2:describeSecurityGroups', 'EC2:describeNetworkInterfaces', 'Lambda:listFunctions'],
     settings: {
         restricted_open_ports: {
             name: 'Restricted Open Ports',
@@ -16,9 +16,21 @@ module.exports = {
             regex: '[a-zA-Z0-9,:]',
             default: ''
         },
+        ec2_skip_unused_groups: {
+            name: 'EC2 Skip Unused Groups',
+            description: 'Skip checking ports for unused security groups',
+            regex: '^(true|false)$',
+            default: 'false',
+        }
     },
 
     run: function(cache, settings, callback) {
+        var config = {
+            ec2_skip_unused_groups: settings.ec2_skip_unused_groups || this.settings.ec2_skip_unused_groups.default,
+        };
+
+        config.ec2_skip_unused_groups = (config.ec2_skip_unused_groups == 'true');
+        
         var results = [];
         var source = {};
         var regions = helpers.regions(settings);
@@ -56,7 +68,7 @@ module.exports = {
                 return rcb();
             }
 
-            helpers.findOpenPorts(describeSecurityGroups.data, ports, 'custom', region, results);
+            helpers.findOpenPorts(describeSecurityGroups.data, ports, 'custom', region, results, cache, config, rcb);
 
             rcb();
         }, function(){

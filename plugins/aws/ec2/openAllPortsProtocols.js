@@ -8,7 +8,15 @@ module.exports = {
     more_info: 'Security groups should be created on a per-service basis and avoid allowing all ports or protocols.',
     link: 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html',
     recommended_action: 'Modify the security group to specify a specific port and protocol to allow.',
-    apis: ['EC2:describeSecurityGroups'],
+    apis: ['EC2:describeSecurityGroups', 'EC2:describeNetworkInterfaces', 'Lambda:listFunctions'],
+    settings: {
+        ec2_skip_unused_groups: {
+            name: 'EC2 Skip Unused Groups',
+            description: 'Skip checking ports for unused security groups',
+            regex: '^(true|false)$',
+            default: 'flase',
+        }
+    },
     compliance: {
         hipaa: 'HIPAA requires strict access controls to networks and services ' +
                 'processing sensitive data. Security groups are the built-in ' +
@@ -20,6 +28,12 @@ module.exports = {
     },
 
     run: function(cache, settings, callback) {
+        var config = {
+            ec2_skip_unused_groups: settings.ec2_skip_unused_groups || this.settings.ec2_skip_unused_groups.default,
+        };
+
+        config.ec2_skip_unused_groups = (config.ec2_skip_unused_groups == 'true');
+        
         var results = [];
         var source = {};
         var regions = helpers.regions(settings);
@@ -43,12 +57,25 @@ module.exports = {
 
             var found = false;
             var groups = describeSecurityGroups.data;
+            var usedGroup = false;
+            if (config.ec2_skip_unused_groups) {
+                var usedGroups = helpers.getUsedSecurityGroups(cache, results, region, rcb);
+            }
 
             for (var g in groups) {
                 var strings = [];
                 var resource = 'arn:aws:ec2:' + region + ':' +
                                groups[g].OwnerId + ':security-group/' +
                                groups[g].GroupId;
+
+                if (config.ec2_skip_unused_groups) {
+                    if (groups[g].GroupId && !usedGroups.includes(groups[g].GroupId)) {
+                        helpers.addResult(results, 0, `Security Group: ${groups[g].GroupId} is not in use`,
+                            region, resource);
+                        usedGroup = true;
+                        continue;
+                    }
+                }
 
                 for (var p in groups[g].IpPermissions) {
                     var permission = groups[g].IpPermissions[p];
@@ -99,7 +126,7 @@ module.exports = {
                 }
             }
 
-            if (!found) {
+            if (!found && !usedGroup) {
                 helpers.addResult(results, 0, 'No public open ports found', region);
             }
 

@@ -63,14 +63,27 @@ function addResult(results, status, message, region, resource, custom){
     }
 }
 
-function findOpenPorts(groups, ports, service, region, results) {
+function findOpenPorts(groups, ports, service, region, results, cache, config, callback) {
     var found = false;
+    var usedGroup = false;
+    if (config.ec2_skip_unused_groups) {
+        var usedGroups = getUsedSecurityGroups(cache, results, region, callback);
+    }
 
     for (var g in groups) {
         var string;
         var openV4Ports = [];
         var openV6Ports = [];
         var resource = `arn:aws:ec2:${region}:${groups[g].OwnerId}:security-group/${groups[g].GroupId}`;
+
+        if (config.ec2_skip_unused_groups) {
+            if (groups[g].GroupId && !usedGroups.includes(groups[g].GroupId)) {
+                addResult(results, 0, `Security Group: ${groups[g].GroupId} is not in use`,
+                    region, resource);
+                usedGroup = true;
+                continue;
+            }
+        }
 
         for (var p in groups[g].IpPermissions) {
             var permission = groups[g].IpPermissions[p];
@@ -157,7 +170,7 @@ function findOpenPorts(groups, ports, service, region, results) {
         }
     }
 
-    if (!found) {
+    if (!found && !usedGroup) {
         addResult(results, 0, 'No public open ports found', region);
     }
 
@@ -830,6 +843,45 @@ function getOrganizationAccounts(listAccounts, accountId) {
     return orgAccountIds;
 }
 
+function getUsedSecurityGroups(cache, results, region, callback) {
+    let result = [];
+    const describeNetworkInterfaces = helpers.addSource(cache, {},
+        ['ec2', 'describeNetworkInterfaces', region]);
+    
+    if (!describeNetworkInterfaces || describeNetworkInterfaces.err || !describeNetworkInterfaces.data) {
+        helpers.addResult(results, 3,
+            'Unable to query for network interfaces: ' + helpers.addError(describeNetworkInterfaces), region);
+        return callback();
+    }
+
+    const listFunctions = helpers.addSource(cache, {},
+        ['lambda', 'listFunctions', region]);
+    
+    if (!listFunctions || listFunctions.err || !listFunctions.data) {
+        helpers.addResult(results, 3,
+            'Unable to list lambda functions: ' + helpers.addError(listFunctions), region);
+        return callback();
+    }
+
+    describeNetworkInterfaces.data.forEach(interface => {
+        if (interface.Groups) {
+            interface.Groups.forEach(group => {
+                if (!result.includes(group.GroupId)) result.push(group.GroupId);
+            });
+        }
+    });
+
+    listFunctions.data.forEach(func => {
+        if (func.VpcConfig && func.VpcConfig.SecurityGroupIds) {
+            func.VpcConfig.SecurityGroupIds.forEach(group => {
+                if (!result.includes(group)) result.push(group);
+            });
+        }
+    });
+
+    return result;
+}
+
 function getPrivateSubnets(subnetRTMap, subnets, routeTables) {
     let response = [];
     let privateRouteTables = [];
@@ -894,6 +946,7 @@ module.exports = {
     isEffectivePolicyStatement: isEffectivePolicyStatement,
     getS3BucketLocation: getS3BucketLocation,
     getOrganizationAccounts: getOrganizationAccounts,
+    getUsedSecurityGroups: getUsedSecurityGroups,
     getPrivateSubnets: getPrivateSubnets,
     getSubnetRTMap: getSubnetRTMap
 };

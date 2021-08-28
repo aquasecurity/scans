@@ -10,9 +10,23 @@ module.exports = {
         should be restricted to known IP addresses.',
     link: 'http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html',
     recommended_action: 'Restrict TCP ports 1522 to known IP addresses',
-    apis: ['EC2:describeSecurityGroups'],
+    apis: ['EC2:describeSecurityGroups', 'EC2:describeNetworkInterfaces', 'Lambda:listFunctions'],
+    settings: {
+        ec2_skip_unused_groups: {
+            name: 'EC2 Skip Unused Groups',
+            description: 'Skip checking ports for unused security groups',
+            regex: '^(true|false)$',
+            default: 'false',
+        }
+    },
 
     run: function(cache, settings, callback) {
+        var config = {
+            ec2_skip_unused_groups: settings.ec2_skip_unused_groups || this.settings.ec2_skip_unused_groups.default,
+        };
+
+        config.ec2_skip_unused_groups = (config.ec2_skip_unused_groups == 'true');
+
         var results = [];
         var source = {};
         var regions = helpers.regions(settings);
@@ -40,7 +54,7 @@ module.exports = {
                 return rcb();
             }
 
-            helpers.findOpenPorts(describeSecurityGroups.data, ports, service, region, results);
+            helpers.findOpenPorts(describeSecurityGroups.data, ports, service, region, results, cache, config, rcb);
 
             rcb();
         }, function(){
