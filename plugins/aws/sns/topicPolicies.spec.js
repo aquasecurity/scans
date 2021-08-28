@@ -26,20 +26,6 @@ const getTopicAttributes = [
     {
         "ResponseMetadata": "{\"RequestId\": '2a205b73-5c0d-55e2-8129-0ca612f4a41c' }",
         "Attributes": {
-          "Policy": '{"Version":"2008-10-17","Id":"__default_policy_ID","Statement":[{"Sid":"__default_statement_ID","Effect":"Allow","Principal":{"AWS":"*"},"Action":["SNS:GetTopicAttributes","SNS:SetTopicAttributes","SNS:AddPermission","SNS:RemovePermission","SNS:DeleteTopic","SNS:Subscribe","SNS:ListSubscriptionsByTopic","SNS:Publish","SNS:Receive"],"Resource":"arn:aws:sns:us-east-1:111122223333:test-138-cmk","Condition":{"StringEquals":{"AWS:SourceOwner":"111122223333"}}}]}',
-          "Owner": '111122223333',
-          "SubscriptionsPending": "0",
-          "KmsMasterKeyId": 'arn:aws:kms:us-east-1:111122223333:key/b8789907-b7f7-438d-847e-7d468bac86b2',
-          "TopicArn": 'arn:aws:sns:us-east-1:111122223333:test-138-cmk',
-          "EffectiveDeliveryPolicy": '{"http":{"defaultHealthyRetryPolicy":{"minDelayTarget":20,"maxDelayTarget":20,"numRetries":3,"numMaxDelayRetries":0,"numNoDelayRetries":0,"numMinDelayRetries":0,"backoffFunction":"linear"},"disableSubscriptionOverrides":false}}',
-          "SubscriptionsConfirmed": "0",
-          "DisplayName": "",
-          "SubscriptionsDeleted": "0"
-        }
-    },
-    {
-        "ResponseMetadata": "{\"RequestId\": '2a205b73-5c0d-55e2-8129-0ca612f4a41c' }",
-        "Attributes": {
             "Policy": "{\"Version\":\"2008-10-17\",\"Id\":\"__default_policy_ID\",\"Statement\":[{\"Sid\":\"__default_statement_ID\",\"Effect\":\"Allow\",\"Principal\":{\"AWS\":\"*\"},\"Action\":[\"SNS:GetTopicAttributes\",\"SNS:SetTopicAttributes\",\"SNS:AddPermission\",\"SNS:RemovePermission\",\"SNS:DeleteTopic\",\"SNS:Subscribe\",\"SNS:ListSubscriptionsByTopic\",\"SNS:Publish\",\"SNS:Receive\"],\"Resource\":\"arn:aws:sns:us-east-1:111122223333:test-spec\",\"Condition\":{}}]}",
             "Owner": "111122223333",
             "SubscriptionsPending": "0",
@@ -144,7 +130,7 @@ const createNullCache = () => {
 describe('topicPolicies', function () {
     describe('run', function () {
         it('should PASS if SNS topic policy does not allow global access', function (done) {
-            const cache = createCache([listTopics[0]], getTopicAttributes[1]);
+            const cache = createCache([listTopics[0]], getTopicAttributes[0]);
             topicPolicies.run(cache, {}, (err, results) => {
                 expect(results.length).to.equal(1);
                 expect(results[0].status).to.equal(0);
@@ -153,7 +139,7 @@ describe('topicPolicies', function () {
         });
 
         it('should FAIL if SNS topic policy allows global access', function (done) {
-            const cache = createCache([listTopics[1]], getTopicAttributes[2]);
+            const cache = createCache([listTopics[1]], getTopicAttributes[1]);
             topicPolicies.run(cache, {}, (err, results) => {
                 expect(results.length).to.equal(1);
                 expect(results[0].status).to.equal(2);
@@ -189,7 +175,7 @@ describe('topicPolicies', function () {
         });
 
         it('should UNKNOWN if SNS topic does not have a policy attached', function (done) {
-            const cache = createTopicAttributesErrorCache([listTopics[2]], getTopicAttributes[3]);
+            const cache = createTopicAttributesErrorCache([listTopics[2]], getTopicAttributes[2]);
             topicPolicies.run(cache, {}, (err, results) => {
                 expect(results.length).to.equal(1);
                 expect(results[0].status).to.equal(3);
