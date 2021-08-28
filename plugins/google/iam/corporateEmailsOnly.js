@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Corporate Emails Only',
     category: 'IAM',
+    domain: 'Identity and Access Management',
     description: 'Ensures that no users are using their Gmail accounts for access to GCP.',
     more_info: 'Gmail accounts are personally created and are not controlled by organizations. Fully managed accounts are recommended for increased visibility, auditing and control over access to resources.',
     link: 'https://cloud.google.com/iam/docs/overview',

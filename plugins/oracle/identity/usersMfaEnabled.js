@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'Users MFA Enabled',
     category: 'Identity',
+    domain: 'Identity and Access Management',
     description: 'Ensures a multi-factor authentication device is enabled for all users within the account.',
     more_info: 'User accounts should have an MFA device setup to enable two-factor authentication.',
     link: 'https://docs.cloud.oracle.com/iaas/Content/Identity/Tasks/usingmfa.htm',

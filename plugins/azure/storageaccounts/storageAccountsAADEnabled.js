@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure/');
 module.exports = {
     title: 'Storage Accounts AAD Enabled',
     category: 'Storage Accounts',
+    domain: 'Storage',
     description: 'Ensures that identity-based Directory Service for Azure File Authentication is enabled for all Azure Files',
     more_info: 'Enabling identity-based Authentication ensures that only the authorized Active Directory members can access or connect to the file shares, enforcing granular access control.',
     recommended_action: 'Ensure that identity-based Directory Service for Azure File Authentication is enabled for all Azure File Shares.',

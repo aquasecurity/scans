@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'DynamoDB KMS Encryption',
     category: 'DynamoDB',
+    domain: 'Databases',
     description: 'Ensures DynamoDB tables are encrypted using a customer-owned KMS key.',
     more_info: 'DynamoDB tables can be encrypted using AWS-owned or customer-owned KMS keys. Customer keys should be used to ensure control over the encryption seed data.',
     link: 'https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/EncryptionAtRest.html',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'RDS CMK Encryption',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensures RDS instances are encrypted with KMS Customer Master Keys(CMKs).',
     more_info: 'RDS instances should be encrypted with Customer Master Keys in order to have full control over data encryption and decryption.',
     link: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html',

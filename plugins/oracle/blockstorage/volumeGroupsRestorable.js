@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/oracle/');
 module.exports = {
     title: 'Volume Groups Restorable',
     category: 'Block Storage',
+    domain: 'Storage',
     description: 'Ensures volume groups can be restored to a recent point.',
     more_info: 'Enabling volume groups backups ensures that the volume group can be restored following in the event of data loss.',
     recommended_action: 'Ensure volume groups can be restored to a recent point.',

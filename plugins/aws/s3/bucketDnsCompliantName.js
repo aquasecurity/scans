@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'S3 DNS Compliant Bucket Names',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures that S3 buckets have DNS complaint bucket names.',
     more_info: 'S3 bucket names must be DNS-compliant and not contain period "." to enable S3 Transfer Acceleration and to use buckets over SSL.',
     recommended_action: 'Recreate S3 bucket to use "-" instead of "." in S3 bucket names.',

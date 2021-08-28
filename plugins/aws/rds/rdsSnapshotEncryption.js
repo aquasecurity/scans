@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'RDS Snapshot Encryption',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensures encryption is enabled for RDS snapshots to ensure encryption of data at rest.',
     more_info: 'AWS provides encryption for RDS snapshots which should be enabled to ensure that all data at rest is encrypted.',
     link: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.Encryption.html',

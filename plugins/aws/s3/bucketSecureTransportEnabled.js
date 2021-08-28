@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'S3 Secure Transport Enabled',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensure AWS S3 buckets enforce SSL to secure data in transit',
     more_info: 'S3 buckets should be configured to strictly require SSL connections ' +
                'to deny unencrypted HTTP requests when dealing with sensitive data.',

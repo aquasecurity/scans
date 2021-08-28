@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'Inactive User Disabled',
     category: 'RAM',
+    domain: 'Identity and Access Management',
     description: 'Ensure that RAM users inactive for 90 or more days are disabled.',
     more_info: 'RAM User should not have the console access enabled on being inactive for 90 or more days.',
     link: 'https://alibaba-cloud.medium.com/11-security-recommendations-for-production-instances-on-alibaba-cloud-960e3e8442d4',

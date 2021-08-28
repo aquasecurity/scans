@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Bucket Uniform Level Access',
     category: 'Storage',
+    domain: 'Storage',
     description: 'Ensures that uniform level access is enabled on storage buckets.',
     more_info: 'Uniform level access for buckets can be used for managing access in a simple way. It enables us to use other security features like IAM conditions.',
     link: 'https://cloud.google.com/storage/docs/uniform-bucket-level-access#should-you-use',

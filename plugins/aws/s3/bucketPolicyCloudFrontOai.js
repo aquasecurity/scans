@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'S3 Bucket Policy CloudFront OAI',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures S3 bucket is origin to only one distribution and allows only that distribution.',
     more_info: 'Access to CloudFront origins should only happen via ClouFront URL and not from S3 URL or any source in order to restrict access to private data.',
     link: 'https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html',

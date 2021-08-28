@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'IAM Policies Present',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensure that required policies are present in all IAM roles.',
     more_info: 'Validate the presence of required policies in IAM roles in order to follow your organizations\'s security and compliance requirements.',
     link: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html',

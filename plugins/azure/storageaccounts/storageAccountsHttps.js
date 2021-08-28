@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Storage Accounts HTTPS',
     category: 'Storage Accounts',
+    domain: 'Storage',
     description: 'Ensures HTTPS-only traffic is allowed to storage account endpoints',
     more_info: 'Storage Accounts can contain sensitive information and should only be accessed over HTTPS. Enabling the HTTPS-only flag ensures that Azure does not allow HTTP traffic to Storage Accounts.',
     recommended_action: 'Enable the HTTPS-only option for all Storage Accounts.',

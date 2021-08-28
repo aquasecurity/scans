@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Users Password And Keys',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Detects whether users with a console password are also using access keys',
     more_info: 'Access keys should only be assigned to machine users and should not be used for accounts that have console password access.',
     link: 'http://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html',

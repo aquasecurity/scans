@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Lambda Public Access',
     category: 'Lambda',
+    domain: 'Serverless',
     description: 'Ensures Lambda functions are not accessible globally',
     more_info: 'The Lambda function execution policy should not allow public invocation of the function.',
     link: 'https://docs.aws.amazon.com/lambda/latest/dg/access-control-resource-based.html',

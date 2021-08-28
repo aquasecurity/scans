@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/oracle/');
 module.exports = {
     title: 'Block Volume Restorable',
     category: 'Block Storage',
+    domain: 'Storage',
     description: 'Ensures block volumes can be restored to a recent point.',
     more_info: 'Having recent backups on block volumes prevents data loss in the case of a catastrophe.',
     recommended_action: 'Ensure block volumes have recent backups to prevent data loss.',

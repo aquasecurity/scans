@@ -21,6 +21,7 @@ function statementDeniesInsecureTransport(statement, bucketResource) {
 module.exports = {
     title: 'S3 Bucket Encryption In Transit',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures S3 buckets have bucket policy statements that deny insecure transport',
     more_info: 'S3 bucket policies can be configured to deny access to the bucket over HTTP.',
     recommended_action: 'Add statements to the bucket policy that deny all S3 actions when SecureTransport is false. Resources must be list of bucket ARN and bucket ARN with wildcard.',

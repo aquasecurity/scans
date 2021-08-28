@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'Bucket Transfer Acceleration Enabled',
     category: 'OSS',
+    domain: 'Storage',
     description: 'Ensure that OSS buckets has transfer acceleration enabled.',
     more_info: 'Enabling Transfer Acceleration for OSS buckets provides an optimized end-to-end acceleration solution to access OSS over the Internet.',
     recommended_action: 'Modify OSS buckets to enable transfer acceleration.',

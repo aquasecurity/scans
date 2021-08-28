@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'DB Network Security Groups Enabled',
     category: 'Database',
+    domain: 'Databases',
     description: 'Ensures that all databases have network security groups enabled.',
     more_info: 'Enabling network security groups on database systems allow for fine grain control over network access to the database, ensuring databases are only accessible from trusted entities and following security best practices.',
     link: 'https://docs.cloud.oracle.com/iaas/Content/Database/Tasks/backingupOS.htm',

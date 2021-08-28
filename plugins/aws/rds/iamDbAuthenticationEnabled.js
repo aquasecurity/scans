@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'RDS IAM Database Authentication Enabled',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensures IAM Database Authentication is enabled for RDS database instances to manage database access',
     more_info: 'AWS Identity and Access Management (IAM) can be used to authenticate to your RDS DB instances.',
     link: 'https://docs.aws.amazon.com/neptune/latest/userguide/iam-auth.html',

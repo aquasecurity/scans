@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Cluster Labels Added',
     category: 'Kubernetes',
+    domain: 'Containers',
     description: 'Ensures all Kubernetes clusters have labels added',
     more_info: 'It is recommended to add labels to Kubernetes clusters to apply specific security settings and auto configure objects at creation.',
     link: 'https://cloud.google.com/kubernetes-engine/docs/how-to/creating-managing-labels',

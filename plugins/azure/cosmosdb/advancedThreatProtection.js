@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Advanced Threat Protection Enabled',
     category: 'Cosmos DB',
+    domain: 'Databases',
     description: 'Ensures that Advanced Threat Protection feature is enabled for Microsoft Azure Cosmos DB accounts.',
     more_info: 'Advanced Threat Protection for Azure Cosmos DB provides an additional layer of security intelligence that detects unusual and potentially harmful attempts to access or exploit Azure Cosmos DB accounts.',
     link: 'https://docs.microsoft.com/en-us/azure/cosmos-db/cosmos-db-advanced-threat-protection',

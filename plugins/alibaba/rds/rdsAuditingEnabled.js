@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'RDS Auditing Enabled',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensure that RDS DB instances events and activities are being logged to help fix any suspicious activities or security issues.',
     more_info: 'RDS instances provides auditing feature that can be used to log all the events and activities which can be used later in case of any suspicions or security reasons.',
     link: 'https://partners-intl.aliyun.com/help/doc-detail/118678.htm',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Kubernetes Alpha Disabled',
     category: 'Kubernetes',
+    domain: 'Containers',
     description: 'Ensure the GKE Cluster alpha cluster feature is disabled.',
     more_info: 'It is recommended to not use Alpha clusters as they expire after thirty days and do not receive security updates.',
     link: 'https://cloud.google.com/kubernetes-engine/docs/concepts/alpha-clusters',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Lambda Old Runtimes',
     category: 'Lambda',
+    domain: 'Serverless',
     description: 'Ensures Lambda functions are not using out-of-date runtime environments.',
     more_info: 'Lambda runtimes should be kept current with recent versions of the underlying codebase. Deprecated runtimes should not be used.',
     link: 'http://docs.aws.amazon.com/lambda/latest/dg/current-supported-versions.html',

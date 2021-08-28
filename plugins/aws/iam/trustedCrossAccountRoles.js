@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Trusted Cross Account Roles',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures that only trusted cross-account IAM roles can be used.',
     more_info: 'IAM roles should be configured to allow access to trusted account IDs.',
     link: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_common-scenarios_aws-accounts.html',

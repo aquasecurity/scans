@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'Block Storage Policy Protection',
     category: 'Block Storage',
+    domain:'Storage',
     description: 'Ensure policy statements have deletion protection for block volumes unless it is an administrator group.',
     more_info: 'Adding deletion protection to Oracle block volume policies mitigates unintended deletion of block and boot volumes by unauthorized users or groups.',
     link: 'https://docs.cloud.oracle.com/iaas/Content/Security/Reference/iam_security.htm',

@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'Instance Policy Protection',
     category: 'Compute',
+    domain: 'Compute',
     description: 'Ensures policy statements have deletion protection for compute instances unless it is an administrator group.',
     more_info: 'Adding deletion protection to Oracle compute instance policies mitigates unintended deletion of instances by unauthorized users or groups.',
     link: 'https://docs.cloud.oracle.com/iaas/Content/Security/Reference/iam_security.htm',

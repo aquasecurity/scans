@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'SQL DB Multiple AZ',
     category: 'SQL Databases',
+    domain: 'Databases',
     description: 'Ensures that SQL Database instances are created to be cross-AZ for high availability',
     more_info: 'Creating SQL Database instances in a single availability zone creates a single point of failure for all systems relying on that database. All SQL Database instances should be created in multiple availability zones to ensure proper failover.',
     link: 'https://docs.microsoft.com/en-us/azure/sql-database/sql-database-high-availability#zone-redundant-configuration',

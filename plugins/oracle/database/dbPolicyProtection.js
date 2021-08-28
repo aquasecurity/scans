@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'Database Policy Protection',
     category: 'Database',
+    domain: 'Databases',
     description: 'Ensures policy statements have deletion protection for database systems, databases, and database homes unless it is an administrator group.',
     more_info: 'Adding deletion protection to Oracle database policies mitigates unintended deletion of database services by unauthorized users or groups.',
     link: 'https://docs.cloud.oracle.com/iaas/Content/Security/Reference/dbaas_security.htm',

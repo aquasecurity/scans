@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Service Account User',
     category: 'IAM',
+    domain: 'Identity and Access Management',
     description: 'Ensures that no users have the Service Account User role.',
     more_info: 'The Service Account User role gives users the access to all service accounts of a project. This can result in an elevation of privileges and is not recommended.',
     link: 'https://cloud.google.com/iam/docs/overview',

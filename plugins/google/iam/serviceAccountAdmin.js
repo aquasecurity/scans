@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Service Account Admin',
     category: 'IAM',
+    domain: 'Identity and Access Management',
     description: 'Ensures that user managed service accounts do not have any admin, owner, or write privileges.',
     more_info: 'Service accounts are primarily used for API access to Google. It is recommended to not use admin access for service accounts.',
     link: 'https://cloud.google.com/iam/docs/overview',

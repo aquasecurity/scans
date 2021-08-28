@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Storage Auto Increase Enabled',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensure that Cloud SQL DB instances have Automatic Storage Increase feature enabled and desired limit is set for storage increases.',
     more_info: 'When this feature is enabled, Cloud SQL checks your available storage every 30 seconds. If the available storage falls below a threshold size, ' +
         'Cloud SQL automatically and permanently adds additional storage capacity. Setting a limit for automatic storage increase can prevent your instance size from growing too large.',

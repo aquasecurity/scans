@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'SQL Cross DB Ownership Chaining',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensures SQL database instances of SQL Server type have cross db ownership chaining flag disabled.',
     more_info: 'SQL databases of SQL Server provide cross DB ownership chaining flag. It is used to configure cross-database ownership chaining ' +
         'for all databases. It is enabled by default and should be disabled for security unless all required.',

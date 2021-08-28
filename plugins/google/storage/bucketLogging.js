@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Bucket Logging',
     category: 'Storage',
+    domain: 'Storage',
     description: 'Ensures object logging is enabled on storage buckets',
     more_info: 'Storage bucket logging helps maintain an audit trail of access that can be used in the event of a security incident.',
     link: 'https://cloud.google.com/storage/docs/access-logs',

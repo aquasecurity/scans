@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'RDS Transport Encryption Enabled',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensures RDS SQL Server instances have Transport Encryption enabled.',
     more_info: 'Parameter group associated with the RDS instance should have transport encryption enabled to handle encryption and decryption',
     link: 'https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.SSL.html',

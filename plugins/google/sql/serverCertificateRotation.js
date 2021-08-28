@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'SSL Certificate Rotation',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensure that server certificates configured for Cloud SQL are rotated before they expire.',
     more_info: 'Server certificates configured for Cloud SQL DB instances should be rotated before they expire to ensure ' +
         'that incoming connections for database instance remain secure.',

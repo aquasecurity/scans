@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'Password Expiry',
     category: 'RAM',
+    domain: 'Identity and Access Management',
     description: 'Ensure that RAM password security settings require password to be expired after set number of days.',
     more_info: 'A strong password policy enforces minimum length, expiration, reuse, and symbol usage.',
     link: 'https://www.alibabacloud.com/help/doc-detail/116413.htm',

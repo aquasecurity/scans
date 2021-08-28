@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Canary Keys Used',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Detects when a special canary-token access key has been used',
     more_info: 'Canary access keys can be created with limited permissions and then used to detect when a potential breach occurs.',
     link: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/ManagingCredentials.html',

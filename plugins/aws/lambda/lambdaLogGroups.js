@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Lambda Log Groups',
     category: 'Lambda',
+    domain: 'Serverless',
     description: 'Ensures each Lambda function has a valid log group attached to it',
     more_info: 'Every Lambda function created should automatically have a CloudWatch log group generated to handle its log streams.',
     link: 'https://docs.aws.amazon.com/lambda/latest/dg/monitoring-cloudwatchlogs.html',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure/');
 module.exports = {
     title: 'Storage Accounts Encryption',
     category: 'Storage Accounts',
+    domain: 'Storage',
     description: 'Ensures encryption is enabled for Storage Accounts',
     more_info: 'Storage accounts can be configured to encrypt data-at-rest. By default Azure will create a set of keys to encrypt the storage account, but the recommended approach is to create your own keys using Azure Key Vault.',
     recommended_action: 'Ensure all Storage Accounts are configured with a BYOK key.',

@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Automatic Failover Enabled',
     category: 'Cosmos DB',
+    domain: 'Databases',
     description: 'Ensure that the Automatic Failover feature is enabled for Microsoft Azure Cosmos DB accounts.',
     more_info: 'It is strongly recommended to configure the Azure Cosmos DB accounts used for production workloads to enable automatic failover. ' +
         'Automatic failover allows Azure Cosmos DB to automatically failover to the Azure cloud region with the highest failover priority when the source region become unavailable.',

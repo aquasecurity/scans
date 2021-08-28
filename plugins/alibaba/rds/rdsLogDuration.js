@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'RDS Log Duration',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensure that RDS DB instances have log_duration parameter enabled.',
     more_info: 'Enabling log_duration parameter logs the duration of each completed SQL statement generating query and error logs ' +
         'which can be used to identify, troubleshoot, and repair configuration errors and sub-optimal performance.',

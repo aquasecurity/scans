@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Root Account In Use',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures the root account is not being actively used',
     more_info: 'The root account should not be used for day-to-day account management. IAM users, roles, and groups should be used instead.',
     link: 'http://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html',

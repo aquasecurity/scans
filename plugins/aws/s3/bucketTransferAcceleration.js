@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'S3 Transfer Acceleration Enabled',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures that S3 buckets have transfer acceleration enabled to increase the speed of data transfers.',
     more_info: 'S3 buckets should have transfer acceleration enabled to increase the speed of data transfers in and out of Amazon S3 using AWS edge network.',
     recommended_action: 'Modify S3 bucket to enable transfer acceleration.',

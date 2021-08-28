@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'PostgreSQL Log Temp Files',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensures SQL instances for PostgreSQL type have log temp files flag enabled.',
     more_info: 'SQL instance for PostgreSQL databases provides log_temp_files flag. It is used to log the temporary files name and size. It is not enabled by default. Enabling it will make sure to log names and sizes of all the temporary files that were created during any operation(sort, hashes, query_results etc).',
     link: 'https://cloud.google.com/sql/docs/postgres/flags',

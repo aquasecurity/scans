@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'RDS Public Access',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensure that RDS DB instances are not publicly accessible.',
     more_info: 'Enabling public access increase chances of data insecurity. Public access should always be disabled and only know IP addresses should be whitelisted.',
     link: 'https://partners-intl.aliyun.com/help/doc-detail/26198.htm',

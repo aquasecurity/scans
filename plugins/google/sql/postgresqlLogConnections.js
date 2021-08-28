@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'PostgreSQL Log Connections Flag Enabled',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensures SQL instances for PostgreSQL type have log connections flag enabled.',
     more_info: 'SQL instance for PostgreSQL databases provides log_connections flag. It is used to log every attempt to connect to the db server. It is not enabled by default. Enabling it will make sure to log all connection tries',
     link: 'https://cloud.google.com/sql/docs/postgres/flags',

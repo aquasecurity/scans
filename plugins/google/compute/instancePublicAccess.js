@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Instance Public Access Disabled',
     category: 'Compute',
+    domain: 'Compute',
     description: 'Ensures that compute instances are not configured to allow public access.',
     more_info: 'Compute Instances should always be configured behind load balancers instead of having public IP addresses ' +
         'in order to minimize the instance\'s exposure to the internet.',

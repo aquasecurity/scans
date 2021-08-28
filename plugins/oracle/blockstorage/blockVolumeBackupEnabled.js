@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/oracle/');
 module.exports = {
     title: 'Block Volume Backup Enabled',
     category: 'Block Storage',
+    domain: 'Storage',
     description: 'Ensures block volumes have backups enabled.',
     more_info: 'Enabling block volume backup policies ensures that the block volume can be restored following in the event of data loss.',
     recommended_action: 'Enable backups on each block volume.',

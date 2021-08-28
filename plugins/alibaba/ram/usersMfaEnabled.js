@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'Users MFA Enabled',
     category: 'RAM',
+    domain: 'Identity and Access Management',
     description: 'Ensures a multi-factor authentication device is enabled for all RAM users within the account',
     more_info: 'RAM User should have an MFA device setup to enable two-factor authentication.',
     link: 'https://partners-intl.aliyun.com/help/doc-detail/119555.htm',

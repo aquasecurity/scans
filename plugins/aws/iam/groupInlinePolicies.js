@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Group Inline Policies',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures that groups do not have any inline policies',
     more_info: 'Managed Policies are recommended over inline policies.',
     link: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html',

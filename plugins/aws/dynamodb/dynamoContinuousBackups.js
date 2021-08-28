@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'DynamoDB Continuous Backups',
     category: 'DynamoDB',
+    domain: 'Databases',
     description: 'Ensures that Amazon DynamoDB tables have continuous backups enabled.',
     more_info: 'DynamoDB tables should have Continuous Backups and Point-In-Time Recovery (PITR) features enabled to protect DynamoDB data against accidental data writes.',
     link: 'https://aws.amazon.com/blogs/aws/new-amazon-dynamodb-continuous-backups-and-point-in-time-recovery-pitr/',

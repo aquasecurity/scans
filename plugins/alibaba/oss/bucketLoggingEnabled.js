@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'Bucket Logging Enabled',
     category: 'OSS',
+    domain: 'Storage',
     description: 'Ensure that OSS buckets has logging enabled.',
     more_info: 'Enabling logging for OSS buckets provides visibility into request made to access bucket objects which can be useful in auditing and security workflows.',
     recommended_action: 'Modify OSS buckets to enable logging.',

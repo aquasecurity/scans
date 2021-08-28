@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'KMS User Separation',
     category: 'IAM',
+    domain: 'Identity and Access Management',
     description: 'Ensures that no users have the KMS admin role and any one of the CryptoKey roles.',
     more_info: 'Ensuring that no users have the KMS admin role and any one of the CryptoKey roles follows separation of duties, where no user should have access to resources out of the scope of duty.',
     link: 'https://cloud.google.com/iam/docs/overview',

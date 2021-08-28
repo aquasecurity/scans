@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Basic Authentication Disabled',
     category: 'Kubernetes',
+    domain: 'Containers',
     description: 'Ensure basic authentication is set to disabled on Kubernetes clusters.',
     more_info: 'Basic authentication uses static passwords to authenticate, which is not ' +
         'the recommended method to authenticate into the Kubernetes API server.',

@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Root Access Keys',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures the root account is not using access keys',
     more_info: 'The root account should avoid using access keys. Since the root account has full permissions across the entire account, creating access keys for it only increases the chance that they are compromised. Instead, create IAM users with predefined roles.',
     link: 'http://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html',

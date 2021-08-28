@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'Database Backup Enabled',
     category: 'Database',
+    domain: 'Databases',
     description: 'Ensures that all databases have auto backup enabled',
     more_info: 'Enabling automatic backup on databases ensures that all sensitive data is protected from unwarranted deletion or loss of data.',
     link: 'https://docs.cloud.oracle.com/iaas/Content/Database/Tasks/backingupOS.htm',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Default Service Account',
     category: 'Kubernetes',
+    domain: 'Containers',
     description: 'Ensures all Kubernetes cluster nodes are not using the default service account.',
     more_info: 'Kubernetes cluster nodes should use customized service accounts that have minimal privileges to run. This reduces the attack surface in the case of a malicious attack on the cluster.',
     link: 'https://cloud.google.com/container-optimized-os/',

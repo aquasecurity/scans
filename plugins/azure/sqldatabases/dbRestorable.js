@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'DB Restorable',
     category: 'SQL Databases',
+    domain: 'Databases',
     description: 'Ensures SQL Database instances can be restored to a recent point',
     more_info: 'Automated backups of SQL databases with recent restore points help ensure that database recovery operations can occur without significant data loss.',
     link: 'https://docs.microsoft.com/en-us/azure/sql-database/sql-database-recovery-using-backups',

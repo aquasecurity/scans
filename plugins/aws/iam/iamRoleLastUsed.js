@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'IAM Role Last Used',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures IAM roles that have not been used within the given time frame are deleted.',
     more_info: 'IAM roles that have not been used for a long period may contain old access policies that could allow unintended access to resources if accidentally attached to new services. These roles should be deleted.',
     link: 'https://aws.amazon.com/about-aws/whats-new/2019/11/identify-unused-iam-roles-easily-and-remove-them-confidently-by-using-the-last-used-timestamp/',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'MySQL Slow Query Log Enabled',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensures that MySQL instances have slow query log flag enabled.',
     more_info: 'MySQL instance flag that helps find inefficient or time-consuming SQL queries for MySQL databases.',
     link: 'https://cloud.google.com/sql/docs/mysql/flags',

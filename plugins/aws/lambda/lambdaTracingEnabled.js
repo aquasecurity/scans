@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Lambda Tracing Enabled',
     category: 'Lambda',
+    domain: 'Serverless',
     description: 'Ensures AWS Lambda functions have active tracing for X-Ray.',
     more_info: 'AWS Lambda functions should have active tracing in order to gain visibility into the functions execution and performance.',
     link: 'https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html',

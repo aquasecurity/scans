@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/oracle');
 module.exports = {
     title: 'Users Email Verified',
     category: 'Identity',
+    domain: 'Identity and Access Management',
     description: 'Ensure all IAM user accounts have a valid and current email address.',
     more_info: 'To Have a valid email address associated with an OCI IAM local user account enables you to tie the account to identity in your organization ' +
         'as well as allows that user to reset their password if it is forgotten or lost.',

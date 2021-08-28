@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws/');
 module.exports = {
     title: 'S3 Bucket Enforce Object Encryption',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures S3 bucket policies do not allow uploads of unencrypted objects',
     more_info: 'S3 bucket policies can be configured to block uploads of objects that are not encrypted.',
     recommended_action: 'Set the S3 bucket policy to deny uploads of unencrypted objects.',

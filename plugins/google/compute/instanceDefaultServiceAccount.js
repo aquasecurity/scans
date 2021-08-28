@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Instance Default Service Account',
     category: 'Compute',
+    domain: 'Compute',
     description: 'Ensures that compute instances are not configured to use the default service account.',
     more_info: 'Default service account has the editor role permissions. Due to security reasons it should not be used for any instance.',
     link: 'https://cloud.google.com/compute/docs/access/service-accounts',

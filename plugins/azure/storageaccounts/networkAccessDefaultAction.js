@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Network Access Default Action',
     category: 'Storage Accounts',
+    domain: 'Storage',
     description: 'Ensures that Storage Account access is restricted to trusted networks',
     more_info: 'Storage Accounts should be configured to accept traffic only from trusted networks. By default, all networks are selected but can be changed when creating a new storage account or in the firewall settings.',
     recommended_action: 'Configure the firewall of each Storage Account to allow access only from known virtual networks.',

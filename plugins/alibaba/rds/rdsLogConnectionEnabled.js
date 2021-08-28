@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'RDS Log Connections Enabled',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensure that log_connections parameter is set to ON for RDS instances.',
     more_info: 'RDS instance provide the feature of logging details of establishing a connection to the server ' +
         'to identify, troubleshoot, and repair configuration errors and suboptimal performance.',

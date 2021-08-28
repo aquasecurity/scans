@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Web Dashboard Disabled',
     category: 'Kubernetes',
+    domain: 'Containers',
     description: 'Ensures all Kubernetes clusters have the web dashboard disabled.',
     more_info: 'It is recommended to disable the web dashboard because it is backed by a highly privileged service account.',
     link: 'https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards',

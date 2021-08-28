@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Users MFA Enabled',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures a multi-factor authentication device is enabled for all users within the account',
     more_info: 'User accounts should have an MFA device setup to enable two-factor authentication',
     link: 'http://docs.aws.amazon.com/IAM/latest/UserGuide/Using_ManagingPasswordPolicies.html',

@@ -6,6 +6,7 @@ var managedAdminPolicy = 'arn:aws:iam::aws:policy/AdministratorAccess';
 module.exports = {
     title: 'IAM Role Policies',
     category: 'IAM',
+    domain: 'Identity and Access management',
     description: 'Ensures IAM role policies are properly scoped with specific permissions',
     more_info: 'Policies attached to IAM roles should be scoped to least-privileged access and avoid the use of wildcards.',
     link: 'https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html',

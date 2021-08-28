@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Spanner Instance Node Count',
     category: 'Spanner',
+    domain: 'Databases',
     description: 'Ensure than node count for Spanner instances is not above allowed count.',
     more_info: 'The number of provisioned Cloud Spanner instance nodes must be under desired limit to avoid reaching the limit and exceeding the set budget.',
     link: 'https://cloud.google.com/spanner/docs/instances',

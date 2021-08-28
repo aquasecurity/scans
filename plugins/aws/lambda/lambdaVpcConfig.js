@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Lambda VPC Config',
     category: 'Lambda',
+    domain: 'Serverless',
     description: 'Ensures Lambda functions are created in a VPC.',
     more_info: 'Lambda functions should be created in an AWS VPC to avoid exposure to the Internet and to enable communication with VPC resources through NACLs and security groups.',
     link: 'https://docs.aws.amazon.com/lambda/latest/dg/vpc.html',

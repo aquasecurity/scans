@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'DB Publicly Accessible',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensures that SQL instances do not allow public access',
     more_info: 'Unless there is a specific business requirement, SQL instances should not have a public endpoint and should only be accessed from within a VPC.',
     link: 'https://cloud.google.com/sql/docs/mysql/authorize-networks',

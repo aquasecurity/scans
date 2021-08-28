@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Blob Service Encryption',
     category: 'Storage Accounts',
+    domain: 'Storage',
     description: 'Ensures encryption is properly configured for Blob Services',
     more_info: 'Blob Services can be configured to encrypt data-at-rest. By default Azure will create a set of keys to encrypt Blob Services, but the recommended approach is to create your own keys using Azure Key Vault.',
     recommended_action: 'Ensure that Blob Service is configured to use a customer-provided key vault key.',

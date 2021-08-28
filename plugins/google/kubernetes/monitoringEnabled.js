@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Monitoring Enabled',
     category: 'Kubernetes',
+    domain: 'Containers',
     description: 'Ensures all Kubernetes clusters have monitoring enabled',
     more_info: 'Kubernetes supports monitoring through Stackdriver.',
     link: 'https://cloud.google.com/monitoring/kubernetes-engine/',

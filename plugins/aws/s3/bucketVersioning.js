@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'S3 Bucket Versioning',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures object versioning is enabled on S3 buckets',
     more_info: 'Object versioning can help protect against the overwriting of \
                 objects or data loss in the event of a compromise.',

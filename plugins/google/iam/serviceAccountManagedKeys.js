@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Service Account Managed Keys',
     category: 'IAM',
+    domain: 'Identity and Access Management',
     description: 'Ensures that service account keys are being managed by Google.',
     more_info: 'Service account keys should be managed by Google to ensure that they are as secure as possible, including key rotations and restrictions to the accessibility of the keys.',
     link: 'https://cloud.google.com/iam/docs/creating-managing-service-account-keys',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Connect Serial Ports Disabled',
     category: 'Compute',
+    domain: 'Compute',
     description: 'Ensures connecting to serial ports is not enabled for VM instances',
     more_info: 'The serial console does not allow restricting IP Addresses, which allows any IP address to connect to instance and should therefore be disabled.',
     link: 'https://cloud.google.com/compute/docs/instances/interacting-with-serial-console',

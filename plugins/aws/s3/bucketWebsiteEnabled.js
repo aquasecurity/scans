@@ -3,6 +3,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'S3 Bucket Website Enabled',
     category: 'S3',
+    domain: 'Storage',
     description: 'Ensures S3 buckets are not configured with static website hosting',
     more_info: 'S3 buckets should not be configured with static website hosting with public objects. Instead, a CloudFront distribution should be configured with an origin access identity.',
     recommended_action: 'Disable S3 bucket static website hosting in favor or CloudFront distributions.',

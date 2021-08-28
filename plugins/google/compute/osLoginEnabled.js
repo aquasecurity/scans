@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'OS Login Enabled',
     category: 'Compute',
+    domain: 'Compute',
     description: 'Ensures OS login is enabled for the project',
     more_info: 'Enabling OS login ensures that SSH keys used to connect to instances are mapped with IAM users.',
     link: 'https://cloud.google.com/compute/docs/instances/managing-instance-access',

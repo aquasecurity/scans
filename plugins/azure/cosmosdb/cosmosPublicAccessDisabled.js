@@ -4,6 +4,7 @@ const helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Cosmos DB Public Access Disabled',
     category: 'Cosmos DB',
+    domain: 'Databases',
     description: 'Ensure that Microsoft Azure Cosmos DB accounts are configured to deny public access.',
     more_info: 'Microsoft Azure Cosmos DB accounts should not be accessible from internet and only be accessed from within a VNET.',
     link: 'https://docs.microsoft.com/en-us/azure/cosmos-db/how-to-configure-firewall',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'PostgreSQL Log Checkpoints Enabled',
     category: 'SQL',
+    domain: 'Databases',
     description: 'Ensure that log_checkpoints flag is enabled for PostgreSQL instances.',
     more_info: 'When log_checkpoints flag is enabled, instance checkpoints and restart points are logged in the server log.',
     link: 'https://cloud.google.com/sql/docs/postgres/flags#setting_a_database_flag',

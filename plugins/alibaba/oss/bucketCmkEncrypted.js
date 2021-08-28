@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'Bucket CMK Encrypted',
     category: 'OSS',
+    domain: 'Storage',
     description: 'Ensure that OSS buckets are encrypted using Alibaba CMK.',
     more_info: 'OSS buckets should be encrypted using customer master keys in order to gain greater control and transparency, ' +
         'as well as increasing security by having full control of the encryption keys.',

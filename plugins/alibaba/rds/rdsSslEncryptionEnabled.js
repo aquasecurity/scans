@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/alibaba');
 module.exports = {
     title: 'RDS SSL Encryption Enabled',
     category: 'RDS',
+    domain: 'Databases',
     description: 'Ensure that RDS instances enforce all incoming connections to use SSL.',
     more_info: 'To enhance link security, you should enable Secure Sockets Layer (SSL) encryption for RDS instances. ' + 
         'SSL is used on the transport layer to encrypt network connections. SSL not only increases the security and integrity of communication data, but also increases the response time for network connection.',
