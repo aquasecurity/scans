@@ -9,7 +9,7 @@ module.exports = {
     description: 'Ensures the private endpoint setting is enabled for EKS clusters',
     more_info: 'EKS private endpoints can be used to route all traffic between the Kubernetes worker and control plane nodes over a private VPC endpoint rather than across the public internet.',
     link: 'https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html',
-    recommended_action: 'Enable the private endpoint setting for all EKS clusters.',
+    recommended_action: 'Disable the public endpoint setting for all EKS clusters.',
     apis: ['EKS:listClusters', 'EKS:describeCluster', 'STS:getCallerIdentity'],
     realtime_triggers: ['eks:CreateCluster', 'eks:updateClusterConfig', 'eks:DeleteCluster'],
 
@@ -57,10 +57,10 @@ module.exports = {
 
                 if (describeCluster.data.cluster &&
                     describeCluster.data.cluster.resourcesVpcConfig &&
-                    describeCluster.data.cluster.resourcesVpcConfig.endpointPrivateAccess) {
-                    helpers.addResult(results, 0, 'EKS cluster has private endpoint enabled', region, arn);
+                    describeCluster.data.cluster.resourcesVpcConfig.endpointPublicAccess) {
+                    helpers.addResult(results, 2, 'EKS cluster has public endpoint enabled', region, arn);
                 } else {
-                    helpers.addResult(results, 2, 'EKS cluster does not have private endpoint enabled', region, arn);
+                    helpers.addResult(results, 0, 'EKS cluster has public endpoint disabled', region, arn);
                 }
             }
 
