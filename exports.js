@@ -184,6 +184,7 @@ module.exports = {
         'flowLogsEnabled'               : require(__dirname + '/plugins/aws/ec2/flowLogsEnabled.js'),
         'vpcMultipleSubnets'            : require(__dirname + '/plugins/aws/ec2/multipleSubnets.js'),
         'overlappingSecurityGroups'     : require(__dirname + '/plugins/aws/ec2/overlappingSecurityGroups.js'),
+        'unusedOpenPorts'               : require(__dirname + '/plugins/aws/ec2/unusedOpenPorts.js'),
         'publicAmi'                     : require(__dirname + '/plugins/aws/ec2/publicAmi.js'),
         'encryptedAmi'                  : require(__dirname + '/plugins/aws/ec2/encryptedAmi.js'),
         'amiHasTags'                    : require(__dirname + '/plugins/aws/ec2/amiHasTags.js'),
