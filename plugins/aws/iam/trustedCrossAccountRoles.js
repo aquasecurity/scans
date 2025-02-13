@@ -83,7 +83,7 @@ module.exports = {
 
             var statements = helpers.normalizePolicyDocument(role.AssumeRolePolicyDocument);
 
-            if (!statements || !statements.length) {
+            if (!Array.isArray(statements) ||!statements.length) {
                 helpers.addResult(results, 0,
                     'IAM role does not contain trust relationship statements',
                     'global', role.Arn);
