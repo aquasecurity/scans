@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Amazon Comprehend Flywheel In VPC',
     category: 'AI & ML',
+    owasp: ['LLM07', 'LLM04', 'LLM02'],
     domain: 'Compute',
     severity: 'Low',
     description: 'Ensure that an Amazon Comprehend Flywheel is configured with a VPC.',

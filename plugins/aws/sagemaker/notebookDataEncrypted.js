@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Notebook Data Encrypted',
     category: 'AI & ML',
+    owasp: ['LLM07', 'LLM02', 'LLM10'],
     domain: 'Compute',
     severity: 'High',
     description: 'Ensure Notebook data is encrypted',

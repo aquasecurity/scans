@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Notebook instance in VPC',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Compute',
     severity: 'Medium',
     description: 'Ensure that Amazon SageMaker Notebook instances are launched within a VPC.',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'OpenAI Account Public Access Disabled',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Machine Learning',
     severity: 'High',
     description: 'Ensures that Azure OpenAI accounts are not publicly accessible.',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/google');
 module.exports = {
     title: 'Vertex AI Model Encryption',
     category: 'AI & ML',
+    owasp: ['LLM010', 'LLM07'],
     domain: 'Machine Learning',
     severity: 'High',
     description: 'Ensure that Vertex AI models are encrypted using desired encryption protection level.',

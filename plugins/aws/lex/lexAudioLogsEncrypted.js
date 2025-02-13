@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Audio Logs Encrypted',
     category: 'AI & ML',
+    owasp: ['LLM02'],
     domain: 'Content Delivery',
     severity: 'High',
     description: 'Ensure that Amazon Lex audio logs are encrypted using desired KMS encryption level',

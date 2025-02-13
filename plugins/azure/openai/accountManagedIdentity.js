@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'OpenAI Account Managed Identity Enabled',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Machine Learning',
     severity: 'Medium',
     description: 'Ensures a system or user assigned managed identity is enabled to authenticate to Azure OpenAI accounts.',

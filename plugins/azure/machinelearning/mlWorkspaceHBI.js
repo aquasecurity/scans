@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Machine Learning Workspace High Business Impact Enabled',
     category: 'AI & ML',
+    owasp: ['LLM02'],
     domain: 'Machine Learning',
     severity: 'Medium',
     description: 'Ensures that Machine Learning workspaces have High Business Impact (HBI) feature enabled.',

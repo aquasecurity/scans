@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Synapse Workspace Double Encryption Enabled',
     category: 'AI & ML',
+    owasp: ['LLM10', 'LLM04', 'LLM02'],
     domain: 'Machine Learning',
     severity: 'High',
     description: 'Ensures that Azure Synapse workspaces have double Encryption enabled.',

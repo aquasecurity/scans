@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Synapse Workspace Managed Identity',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Machine Learning',
     severity: 'Medium',
     description: 'Ensure that Azure Synapse workspace has managed identity enabled.',

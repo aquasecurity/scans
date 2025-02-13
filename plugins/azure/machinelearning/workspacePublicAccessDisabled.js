@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Machine Learning Workspace Public Access Disabled',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Machine Learning',
     severity: 'High',
     description: 'Ensures that Azure Machine Learning workspaces are not publicly accessible.',

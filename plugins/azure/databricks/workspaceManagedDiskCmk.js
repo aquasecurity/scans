@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Databricks Workspace Managed Disk CMK Encrypted',
     category: 'AI & ML',
+    owasp: ['LLM02', 'LLM04'],
     domain: 'Machine Learning',
     severity: 'Medium',
     description: 'Ensures that Databricks premium workspace managed disk is encrypted with CMK.',

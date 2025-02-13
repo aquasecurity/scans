@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Translate Job Output Encrypted',
     category: 'AI & ML',
+    owasp: ['LLM02'],
     domain: 'Compute',
     severity: 'High',
     description: 'Ensure that your Amazon Translate jobs have CMK encryption enabled for output data residing on S3.',

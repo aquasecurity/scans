@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Notebook Direct Internet Access',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Compute',
     severity: 'Medium',
     description: 'Ensure Notebook Instance is not publicly available.',

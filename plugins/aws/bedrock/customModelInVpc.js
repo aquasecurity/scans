@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Custom Model In VPC',
     category: 'AI & ML',
+    owasp: ['LLM07'],
     domain: 'Machine Learning',
     severity: 'Low',
     description: 'Ensure that an Amazon Bedrock custom model is configured with a VPC.',

@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Model Data Encrypted',
     category: 'AI & ML',
+    owasp: ['LLM10', 'LLM04', 'LLM02'],
     domain: 'Management and Governance',
     severity: 'High',
     description: 'Ensure that Lookout for Vision model data is encrypted using desired KMS encryption level',

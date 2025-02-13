@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/aws');
 module.exports = {
     title: 'Custom Model Encryption Enabled',
     category: 'AI & ML',
+    owasp: ['LLM10'],
     domain: 'Machine Learning',
     severity: 'High',
     description: 'Ensure that an Amazon Bedrock custom models are encrypted with desired encryption level.',

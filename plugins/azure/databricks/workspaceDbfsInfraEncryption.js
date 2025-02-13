@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'Databricks Workspace DBFS Infrastructure Encryption',
     category: 'AI & ML',
+    owasp: ['LLM02', 'LLM04'],
     domain: 'Machine Learning',
     severity: 'Medium',
     description: 'Ensures that DBFS root storage for Databricks premium workspace has infrastructure encryption enabled.',

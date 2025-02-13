@@ -4,6 +4,7 @@ var helpers = require('../../../helpers/azure');
 module.exports = {
     title: 'OpenAI Account CMK Encrypted',
     category: 'AI & ML',
+    owasp: ['LLM02', 'LLM04'],
     domain: 'Machine Learning',
     severity: 'High',
     description: 'Ensures that Azure OpenAI accounts are encrypted using CMK.',
