@@ -21,7 +21,6 @@ async function uploadResultsToBlob(resultsObject, storageConnection, blobContain
         const blobServiceClient = azureStorage.BlobServiceClient.fromConnectionString(storageConnection);
         const containerClient = blobServiceClient.getContainerClient(blobContainerName);
 
-        // Check if the container exists, if not, create it
         const exists = await containerClient.exists();
         if (!exists) {
             await containerClient.create();
