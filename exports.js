@@ -549,6 +549,7 @@ module.exports = {
         'mqBrokerPublicAccess'          : require(__dirname + '/plugins/aws/mq/mqBrokerPublicAccess.js'),
 
         'memorydbClusterEncrypted'      : require(__dirname + '/plugins/aws/memorydb/memorydbClusterEncrypted.js'),
+        'memorydbSnapshotRetention'     : require(__dirname + '/plugins/aws/memorydb/memorydbSnapshotRetention.js'),
 
         'mskClusterCBEncryption'        : require(__dirname + '/plugins/aws/msk/mskClusterCBEncryption.js'),
 
