@@ -10,15 +10,16 @@ CloudSploit by Aqua - Cloud Security Scans
 ## Quick Start
 ### Generic
 ```
-$ git clone https://github.com/aquasecurity/cloudsploit.git
+$ git clone https://github.com/aquasecurity/cloudsploit.git --depth 1
 $ cd cloudsploit
 $ npm install
+$ chmod +x ./index.js
 $ ./index.js -h
 ```
 
 ### Docker
 ```
-$ git clone https://github.com/aquasecurity/cloudsploit.git
+$ git clone https://github.com/aquasecurity/cloudsploit.git --depth 1
 $ cd cloudsploit
 $ docker build . -t cloudsploit:0.0.1
 $ docker run cloudsploit:0.0.1 -h
