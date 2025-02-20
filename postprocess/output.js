@@ -8,6 +8,13 @@ function exchangeStatusWord(result) {
     return 'UNKNOWN';
 }
 
+function exchangeStatusWordSarif(result) {
+    if (result.status === 0) return 'none';
+    if (result.status === 1) return 'warning';
+    if (result.status === 2) return 'error';
+    return 'note';
+}
+
 function commaSafe(str) {
     if (!str) return '';
     return str.replace(/,/g, ' ');
@@ -149,6 +156,83 @@ module.exports = {
                 this.stream.write(JSON.stringify(results, null, 2));
                 this.stream.end();
                 log(`INFO: JSON file written to ${settings.json}`, settings);
+            }
+        };
+    },
+
+    /**
+     * Creates an output handler that writes output in the SARIF JSON format (https://github.com/oasis-tcs/sarif-spec/blob/main/Schemata/sarif-schema-2.1.0.json)
+     * @param {fs.WriteSteam} stream The stream to write to or an object that
+     * obeys the writeable stream contract.
+     */
+    createSarifJson: function(stream, settings) {
+        var results = [];
+        return {
+            stream: stream,
+      
+            writeResult: function(result, plugin, pluginKey, complianceMsg) {
+                var toWrite = {
+                    plugin: pluginKey,
+                    category: plugin.category,
+                    title: plugin.title,
+                    description: plugin.description,
+                    resource: result.resource || 'N/A',
+                    region: result.region || 'Global',
+                    status: exchangeStatusWordSarif(result),
+                    message: result.message
+                };
+
+                if (complianceMsg) toWrite.compliance = complianceMsg;
+                results.push(toWrite);
+            },
+      
+            close: function() {
+                var sarif = {
+                    "version": "2.1.0",
+                    "$schema": "http://json.schemastore.org/sarif-2.1.0",
+                    "runs": [
+                      {
+                        "tool": {
+                          "driver": {
+                            "name": "cloudsploit",
+                            "version": "3.1.0",
+                            "informationUri": "https://github.com/aquasecurity/cloudsploit"
+                          }
+                        },
+                        "results": []
+                      }
+                    ]
+                  }
+
+                results.forEach(result=>{
+                    var addResult = {
+                        "level": "",
+                        "message": {
+                          "text": ""
+                        },
+                        "locations": [
+                          {
+                            "physicalLocation": {
+                              "artifactLocation": {
+                                "uri": "",
+                              }
+                            }
+                          }
+                        ],
+                        "ruleId": ""
+                      }
+                    addResult.level = result.status
+                    addResult.message.text = result.message
+                    addResult.locations[0].physicalLocation.artifactLocation.uri = result.resource
+                    addResult.ruleId = `${result.category.toUpperCase()}-${result.plugin.toUpperCase()}`
+
+
+                    sarif.runs[0].results.push(addResult)
+                })
+
+                this.stream.write(JSON.stringify(sarif, null, 2));
+                this.stream.end();
+                log(`INFO: SARIF JSON file written to ${settings.json}`, settings);
             }
         };
     },
@@ -389,6 +473,11 @@ module.exports = {
         if (settings.collection) {
             var streamColl = fs.createWriteStream(settings.collection);
             collectionOutput = this.createCollection(streamColl, settings);
+        }
+
+        if (settings.sarif) {
+            var streamSarif = fs.createWriteStream(settings.sarif);
+            outputs.push(this.createSarifJson(streamSarif, settings));
         }
 
         var addConsoleOutput = settings.console;

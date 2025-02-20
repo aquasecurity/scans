@@ -44,6 +44,7 @@ parser.add_argument('--china', {
 parser.add_argument('--csv', { help: 'Output: CSV file' });
 parser.add_argument('--json', { help: 'Output: JSON file' });
 parser.add_argument('--junit', { help: 'Output: Junit file' });
+parser.add_argument('--sarif', { help: 'Output: SARIF JSON file' });
 parser.add_argument('--console', {
     help: 'Console output format. Default: table',
     choices: ['none', 'text', 'table'],
