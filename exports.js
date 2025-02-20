@@ -300,6 +300,8 @@ module.exports = {
         'elbv2InsecureCiphers'          : require(__dirname + '/plugins/aws/elbv2/elbv2InsecureCiphers.js'),
         'elbv2TLSVersionCipherEnabled'  : require(__dirname + '/plugins/aws/elbv2/elbv2TLSVersionCipherEnabled.js'),
         'elbv2crosszoneLoadBalancing'   : require(__dirname + '/plugins/aws/elbv2/elbv2crosszoneLoadBalancing.js'),
+        'albSecurityGroup'              : require(__dirname + '/plugins/aws/elbv2/albSecurityGroup'),
+
         'elasticacheDefaultPorts'       : require(__dirname + '/plugins/aws/elasticache/elasticacheDefaultPorts.js'),
 
         'emrClusterLogging'             : require(__dirname + '/plugins/aws/emr/emrClusterLogging.js'),
