@@ -113,6 +113,9 @@ var collect = function(AWSConfig, settings, callback) {
             var serviceLower = service.toLowerCase();
             if (!collection[serviceLower]) collection[serviceLower] = {};
 
+            // Log service being processed
+            console.log(`[INFO] Processing service: ${serviceName}`);
+
             // Loop through each of the service's functions
             async.eachOfLimit(call, 15, function(callObj, callKey, callCb) {
                 if (settings.api_calls && settings.api_calls.indexOf(serviceName + ':' + callKey) === -1) return callCb();
@@ -165,6 +168,11 @@ var collect = function(AWSConfig, settings, callback) {
                             }
                         });
                     } else {
+                        if (!AWS[serviceName]) {
+                            console.error(`[ERROR] Service ${serviceName} does not exist in AWS SDK.`);
+                            regionCb();
+                            return;
+                        }
                         var executor = debugMode ? (AWSXRay.captureAWSClient(new AWS[serviceName](LocalAWSConfig))) : new AWS[serviceName](LocalAWSConfig);
                         var paginating = false;
                         var executorCb = function(err, data) {
@@ -284,6 +292,9 @@ var collect = function(AWSConfig, settings, callback) {
 
                 if (!collection[serviceLower]) collection[serviceLower] = {};
 
+                // Log service being processed
+                console.log(`[INFO] Processing service: ${serviceName}`);
+
                 async.eachOfLimit(serviceObj, 1, function(callObj, callKey, callCb) {
                     if (settings.api_calls && settings.api_calls.indexOf(serviceName + ':' + callKey) === -1) return callCb();
 
@@ -345,6 +356,11 @@ var collect = function(AWSConfig, settings, callback) {
                                 }
                             });
                         } else {
+                            if (!AWS[serviceName]) {
+                                console.error(`[ERROR] Service ${serviceName} does not exist in AWS SDK.`);
+                                regionCb();
+                                return;
+                            }
                             var executor = debugMode ? (AWSXRay.captureAWSClient(new AWS[serviceName](LocalAWSConfig))) : new AWS[serviceName](LocalAWSConfig);
 
                             if (!collection[callObj.reliesOnService][callObj.reliesOnCall][LocalAWSConfig.region] ||

@@ -10,8 +10,8 @@
  - api_calls: (Optional) If provided, will only query these APIs.
  - Example:
  {
-     "skip_regions": ["us-east-2", "eu-west-1"],
-     "api_calls": ["EC2:describeInstances", "S3:listBuckets"]
+ "skip_regions": ["us-east-2", "eu-west-1"],
+ "api_calls": ["EC2:describeInstances", "S3:listBuckets"]
  }
  - callback: Function to call when the collection is complete
  *********************/
@@ -84,6 +84,9 @@ var collect = function(AWSConfig, settings, callback) {
             var serviceLower = service.toLowerCase();
             if (!collection[serviceLower]) collection[serviceLower] = {};
 
+            // Log service being processed
+            console.log(`[INFO] Processing service: ${serviceName}`);
+
             // Loop through each of the service's functions
             async.eachOfLimit(call, 15, function(callObj, callKey, callCb) {
                 if (settings.api_calls && settings.api_calls.indexOf(serviceName + ':' + callKey) === -1) return callCb();
@@ -136,6 +139,11 @@ var collect = function(AWSConfig, settings, callback) {
                             }
                         });
                     } else {
+                        if (!AWS[serviceName]) {
+                            console.error(`[ERROR] Service ${serviceName} does not exist in AWS SDK.`);
+                            regionCb();
+                            return;
+                        }
                         var executor = debugMode ? (AWSXRay.captureAWSClient(new AWS[serviceName](LocalAWSConfig))) : new AWS[serviceName](LocalAWSConfig);
                         var paginating = false;
                         var executorCb = function(err, data) {
@@ -244,6 +252,9 @@ var collect = function(AWSConfig, settings, callback) {
 
                     if (!collection[serviceLower]) collection[serviceLower] = {};
 
+                    // Log service being processed
+                    console.log(`[INFO] Processing postcall for service: ${serviceName}`);
+
                     async.eachOfLimit(serviceObj, 1, function(callObj, callKey, callCb) {
                         if (settings.api_calls && settings.api_calls.indexOf(serviceName + ':' + callKey) === -1) return callCb();
 
@@ -278,10 +289,10 @@ var collect = function(AWSConfig, settings, callback) {
 
                             if (callObj.reliesOnCall &&
                                 (!collection[callObj.reliesOnService] ||
-                                !collection[callObj.reliesOnService][callObj.reliesOnCall] ||
-                                !collection[callObj.reliesOnService][callObj.reliesOnCall][region] ||
-                                !collection[callObj.reliesOnService][callObj.reliesOnCall][region].data ||
-                                !collection[callObj.reliesOnService][callObj.reliesOnCall][region].data.length))
+                                    !collection[callObj.reliesOnService][callObj.reliesOnCall] ||
+                                    !collection[callObj.reliesOnService][callObj.reliesOnCall][region] ||
+                                    !collection[callObj.reliesOnService][callObj.reliesOnCall][region].data ||
+                                    !collection[callObj.reliesOnService][callObj.reliesOnCall][region].data.length))
                                 return regionCb();
 
                             var LocalAWSConfig = JSON.parse(JSON.stringify(AWSConfig));
@@ -305,6 +316,11 @@ var collect = function(AWSConfig, settings, callback) {
                                     }
                                 });
                             } else {
+                                if (!AWS[serviceName]) {
+                                    console.error(`[ERROR] Service ${serviceName} does not exist in AWS SDK.`);
+                                    regionCb();
+                                    return;
+                                }
                                 var executor = debugMode ? (AWSXRay.captureAWSClient(new AWS[serviceName](LocalAWSConfig))) : new AWS[serviceName](LocalAWSConfig);
 
                                 if (!collection[callObj.reliesOnService][callObj.reliesOnCall][LocalAWSConfig.region] ||
